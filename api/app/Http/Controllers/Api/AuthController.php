@@ -36,9 +36,9 @@ class AuthController extends Controller
         }
 
         $user = JWTAuth::user();
-        if($user->session_activa == true) {
-            return $this->errorResponse('El usuario está ya ha inciado sesion', Response::HTTP_UNAUTHORIZED);
-        }
+        // if($user->session_activa == true) {
+        //     return $this->errorResponse('El usuario está ya ha inciado sesion', Response::HTTP_UNAUTHORIZED);
+        // }
 
         $user->update([
             'session_activa' => true
@@ -50,7 +50,7 @@ class AuthController extends Controller
 
     public function me()
     {
-        return $this->successResponse(response()->json(JWTAuth::parseToken()->authenticate()));
+        return response()->json(JWTAuth::parseToken()->authenticate());
     }
 
 
