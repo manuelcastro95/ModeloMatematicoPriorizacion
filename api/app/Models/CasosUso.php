@@ -8,7 +8,7 @@ class CasosUso extends Model
 {
     protected $fillable = ['nombre'];
     protected $table = 'casos_uso';
-    
+
     public function criterios()
     {
         return $this->hasMany(Criterio::class);
@@ -16,6 +16,6 @@ class CasosUso extends Model
 
     public function evaluaciones()
     {
-        return $this->hasMany(Evaluacion::class);
+        return $this->hasMany(Evaluacion::class,'caso_uso_id');
     }
 }

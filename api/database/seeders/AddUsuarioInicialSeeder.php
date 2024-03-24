@@ -19,5 +19,21 @@ class AddUsuarioInicialSeeder extends Seeder
     		'email' => 'admin@admin.com',
     		'password' => Hash::make('developer95'),
     	]);
+        DB::table('users')->insert([
+    		'name' => 'Calificador 1',
+    		'email' => 'calificador1@gmail.com',
+    		'password' => Hash::make('calificador1'),
+    	]);
+        DB::table('users')->insert([
+    		'name' => 'Calificador 2',
+    		'email' => 'calificador2@gmail.com',
+    		'password' => Hash::make('calificador2'),
+    	]);
+        DB::table('users')->insert([
+    		'name' => 'Calificador 3',
+    		'email' => 'calificador3@gmail.com',
+    		'password' => Hash::make('calificador3'),
+    	]);
+
     }
 }

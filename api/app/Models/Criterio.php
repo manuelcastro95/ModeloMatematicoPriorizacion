@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Criterio extends Model
 {
-    protected $fillable = ['nombre', 'peso'];
+    protected $fillable = ['nombre','descripcion', 'peso'];
 
 }

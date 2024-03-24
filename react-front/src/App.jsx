@@ -10,6 +10,7 @@ import Criterios from './pages/Criterios';
 import CasosUso from './pages/CasosUso';
 import Evaluadores from './pages/Evaluadores';
 import Evaluaciones from './pages/Evaluaciones';
+import Priorizacion from './pages/Priorizacion';
 
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
         <Route path='/criterios' element={<Criterios />}></Route>
         <Route path='/evaluadores' element={<Evaluadores />}></Route>
         <Route path='/evaluaciones' element={<Evaluaciones token={token} />}></Route>
+        <Route path='/modelo-priorizacion' element={<Priorizacion token={token} />}></Route>
       </Routes>
     </BrowserRouter>
   )

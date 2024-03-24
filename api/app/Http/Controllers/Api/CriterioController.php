@@ -18,6 +18,7 @@ class CriterioController extends Controller
         try {
             Criterio::create([
                 'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
                 'peso' => $request->peso,
             ]);
             return response()->json(['msg' => 'criterio guardado exitosamente']);
@@ -38,6 +39,7 @@ class CriterioController extends Controller
         try {
             $criterio->update([
                 'nombre' => $request->nombre,
+                'descripcion' => $request->descripcion,
                 'peso' => $request->peso,
             ]);
             return response()->json(['msg' => 'criterio actualizado exitosamente']);

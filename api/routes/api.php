@@ -25,18 +25,19 @@ Route::group([  'middleware' => 'auth:api', 'prefix' => 'auth' ], function ($rou
 
 Route::group([ 'prefix' => 'evaluaciones/' ], function ($router) {
     Route::post('guardar-evaluaciones', [EvaluacionController::class, 'guardarEvaluaciones']);
+    Route::get('generar-priorizacion', [EvaluacionController::class, 'generarPriorizacion']);
 });
 
 Route::group(['prefix' => 'casos-uso/' ], function ($router) {
     Route::get('', [CasoUsoController::class, 'index']);
     Route::post('store', [CasoUsoController::class, 'store']);
-    Route::post('show/{caso_uso}', [CasoUsoController::class, 'show']);
+    Route::get('show/{caso_uso}', [CasoUsoController::class, 'show']);
     Route::put('update/{caso_uso}', [CasoUsoController::class, 'update']);
 });
 Route::group(['prefix' => 'criterios/' ], function ($router) {
     Route::get('', [CriterioController::class, 'index']);
     Route::post('store', [CriterioController::class, 'store']);
-    Route::post('show/{criterio}', [CriterioController::class, 'show']);
+    Route::get('show/{criterio}', [CriterioController::class, 'show']);
     Route::put('update/{criterio}', [CriterioController::class, 'update']);
 });
 Route::group(['prefix' => 'evaluadores/' ], function ($router) {

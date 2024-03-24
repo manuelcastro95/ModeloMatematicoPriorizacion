@@ -1,20 +1,9 @@
 import React, { useState } from 'react';
 
-function CardEvaluacion(props) {
+const CardEvaluacion = (props) =>{
     const [calificaciones, setCalificaciones] = useState([]);
-
-    const guardarCalificaciones = (e) => {
-        e.preventDefault();
-
-        const evaluacionesPorCaso = {
-            caso_id: props.caso.id,
-            evaluaciones: calificaciones.map(calificacion => ({
-                criterio_id: calificacion.criterioId,
-                valor: calificacion.evaluacion,
-                evaluador_id: props.evaluador_id
-            }))
-        };
-    };
+    const [textButton, setTextButton] = useState('Guardar')
+    const [estadoButton, setEstadoBUtton] = useState('completar')
 
     const handleChange = (e, criterioId) => {
         const updatedCalificaciones = [...calificaciones];
@@ -29,14 +18,39 @@ function CardEvaluacion(props) {
         setCalificaciones(updatedCalificaciones);
     };
 
+    const guardarCalificaciones = (e) => {
+        e.preventDefault();
+        const evaluacionesPorCaso = {
+            caso_id: props.caso.id,
+            evaluaciones: calificaciones.map(calificacion => ({
+                criterio_id: calificacion.criterioId,
+                valor: calificacion.evaluacion,
+                evaluador_id: props.evaluador_id
+            }))
+        };
+
+        props.onGuardarCalificaciones(evaluacionesPorCaso);
+
+        if(estadoButton == 'completar'){
+            setTextButton('Editar');
+            setEstadoBUtton('editar');
+        } else if(estadoButton == 'editar'){
+            setEstadoBUtton('completar');
+            setTextButton('Guardar')
+        }
+    };
+
+
+    
+
     return (
-        <div className="max-w-xl mx-auto pb-36 px-8">
+        <div className="max-w-xl mx-auto pb-7 px-1">
             <div className="flex flex-col justify-between items-center lg:flex-row lg:items-start">
                 <div className="w-full flex-1 p-8 order-1 shadow-xl rounded-3xl border border-gray-900 text-gray-400 sm:w-96 lg:w-full lg:order-2 lg:mt-0">
                     <div className="mb-1 pb-2 flex items-center border-b border-gray-600">
-                        <div className="ml-5">
-                            <span className="mr-28 text-2xl font-semibold text-gray-950 capitalize">{props.caso.nombre}</span>
-                            <span className="text-2xl font-semibold text-gray-950 capitalize inline-block">{props.numero_caso}/{props.total_casos}</span>
+                        <div className="ml-5 grid grid-cols-3">
+                            <span className="mr-28 w-full text-lg col-span-2  font-semibold text-gray-950 capitalize">{props.caso.nombre}</span>
+                            <span className="text-2xl text-right font-semibold text-gray-950 capitalize inline-block">{props.numero_caso}/{props.total_casos}</span>
                         </div>
                     </div>
                     <form onSubmit={guardarCalificaciones}>
@@ -67,7 +81,7 @@ function CardEvaluacion(props) {
                                                     key={criterio.id}
                                                     className='w-24 p-0'
                                                     onChange={(e) => handleChange(e, criterio.id)}
-                                                    
+                                                    required
                                                 />
                                             </td>
                                         </tr>
@@ -77,10 +91,10 @@ function CardEvaluacion(props) {
                         </div>
                         <button
                             type="submit"
-                            className="w-full flex justify-center items-center bg-indigo-600 rounded-xl py-1 px-2 text-center text-white text-2xl mt-4"
+                            className="mt-3 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                            id='btn-submit'
                         >
-                            Siguiente
-                            <img src="https://res.cloudinary.com/williamsondesign/arrow-right.svg" className="ml-2" />
+                            {textButton}
                         </button>
                     </form>
                 </div>
